@@ -25,7 +25,36 @@ SECRET_KEY = '@w)y916$)-j^po_%syfmvz=)&tmluul1)(w3nykj)(n55gwo4g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+#Access-Control-Request-Method
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:333',
+    'http://127.0.0.1:8000',
+    
+]
+
+ALLOWED_HOSTS = [
+     '*'
+]
+
+
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    '*',
+]
+
+
+
 
 
 # Application definition
@@ -39,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasklist',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +79,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -120,3 +152,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+SECURE_PROXY_SSL_HEADER = ("HTTP_FAKE_SECURE", "true")
